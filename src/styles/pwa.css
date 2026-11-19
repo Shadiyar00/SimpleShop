@@ -1,0 +1,148 @@
+.pwa-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding-top: 10px;
+}
+
+.connection-status,
+.pwa-update {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 0.875rem;
+}
+
+.connection-online,
+.connection-offline {
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.connection-online {
+  color: #1e6640;
+  background: #e7f4eb;
+}
+
+.connection-offline,
+.cache-notice {
+  color: #654904;
+  background: #fff3d6;
+}
+
+.cache-notice {
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.connection-status a,
+.cache-notice a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+}
+
+.offline-panel {
+  max-width: 38rem;
+  margin: 20px auto;
+}
+
+.offline-panel p[role="status"]:empty {
+  display: none;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.button, .pagination button, .text-button, input, select {
+  min-height: 44px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters + .button {
+  margin-top: 16px;
+}
+
+.card, .hero > *, .detail > *, .stats > div, .filters label, .panel {
+  min-width: 0;
+}
+
+.details-list dd, .card h3, .dashboard-link, .bar-row span {
+  overflow-wrap: anywhere;
+}
+
+.back-links {
+  align-items: center;
+}
+
+.back-links a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+:focus-visible {
+  outline: 2px solid #327d53;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .nav {
+    flex-flow: row wrap;
+    min-height: 64px;
+    gap: 8px 16px;
+    padding-block: 10px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-basis: 100%;
+    gap: 4px 10px;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav-links a, .nav-links button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container { padding-inline: 16px; }
+  main.container { padding-block: 22px 44px; }
+  .hero { padding: 22px; gap: 20px; min-height: 0; }
+  .hero img { height: 150px; }
+  .page-header { margin-bottom: 22px; }
+  .grid, .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card-bottom { align-items: flex-start; flex-direction: column; }
+  .card-bottom .button { width: 100%; }
+  .card-image { height: 130px; }
+  .card-image img { max-height: 120px; }
+  .detail { gap: 24px; }
+  .details-list { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 12px; }
+  .pagination { gap: 8px; flex-wrap: wrap; margin: 24px 0; }
+  .pagination button { padding: 8px 10px; }
+  .login-box { padding: 20px; margin-block: 28px; }
+  .message { padding: 24px 12px; }
+}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { invalidateProducts } from '../lib/queryClient';
 
 export default function usePwa() {
   const [online, setOnline] = useState(navigator.onLine);
@@ -28,7 +27,7 @@ export default function usePwa() {
       let hadController = Boolean(workers.controller);
       const onController = () => {
         if (hadController) window.location.reload();
-        else invalidateProducts();
+        else window.dispatchEvent(new Event('simpleshop:worker-ready'));
         hadController = true;
       };
       const onState = () => {

@@ -1,15 +1,27 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setInventoryOwner } from '../features/inventory';
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
+  const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(Boolean(auth));
   const [error, setError] = useState('');
   useEffect(() => {
     if (!auth) return;
-    return onAuthStateChanged(auth, value => { setUser(value); setLoading(false); }, () => { setError('Could not restore your session. Please sign in again.'); setLoading(false); });
-  }, []);
+    return onAuthStateChanged(auth, (value) => {
+      dispatch(setInventoryOwner(value?.uid ?? null));
+      setUser(value);
+      setLoading(false);
+    }, () => {
+      dispatch(setInventoryOwner(null));
+      setUser(null);
+      setError('Could not restore your session. Please sign in again.');
+      setLoading(false);
+    });
+  }, [dispatch]);
   async function run(operation) {
     setError('');
     if (!auth) throw new Error('Firebase is not configured. Contact the site owner.');

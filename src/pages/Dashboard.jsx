@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CachedDataNotice from '../components/CachedDataNotice';
-import useProducts from '../hooks/useProducts';
+import { useProducts } from '../hooks/useReduxProducts';
+import { selectCategories } from '../features/catalog';
 
 export default function Dashboard() {
   const { products, cached, loading, error, refreshing, refresh } = useProducts();
   const [category, setCategory] = useState('all');
-  const categories = [...new Set(products.map((p) => p.category))].sort();
+  const categories = useSelector(selectCategories);
   const filtered = category === 'all' ? products : products.filter((p) => p.category === category);
   const total = filtered.length;
   const average = total ? filtered.reduce((sum, p) => sum + p.price, 0) / total : 0;

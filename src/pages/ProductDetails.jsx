@@ -1,5 +1,5 @@
 import CachedDataNotice from '../components/CachedDataNotice';
-import useProduct from '../hooks/useProduct';
+import { useProduct } from '../hooks/useReduxProducts';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
